@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("/hello")
@@ -33,5 +35,16 @@ class HelloControllermark {
     @GetMapping("/hello/param/{name}")
     public String sayHelloWithPathVariable(@PathVariable String name) {
         return "Hello " + name + " from BridgeLabz";
+    }
+}
+
+
+@RestController
+class HelloControl {
+
+    // Handle POST request to accept firstName and lastName in the request body
+    @PostMapping("/hello/post")
+    public String sayHelloWithPost(@RequestBody UserDTO user) {
+        return "Hello " + user.getFirstName() + " " + user.getLastName() + " from BridgeLabz";
     }
 }
